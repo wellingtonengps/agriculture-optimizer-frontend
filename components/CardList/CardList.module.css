@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f5d1;
+  border-radius: 24px;
+  height: 98px;
+  width: 909px;
+}
+
+.container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f5d1;
+  border-radius: 24px;
+  padding: 0 45px 0 45px;
+  height: 98px;
+  width: 909px;
+
+  font-size: 36px;
+}
+
+.wrapperValues {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 49px;
+}
+
+.output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

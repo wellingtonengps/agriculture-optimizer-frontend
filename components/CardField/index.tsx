@@ -1,16 +1,15 @@
 import { ReactNode, useState } from "react";
 import { IconBase, IconType } from "react-icons";
-import styles from "./Card.module.css";
-
+import styles from "./CardField.module.css";
 import { AiOutlinePlus } from "react-icons/ai";
 
-type CardProps = {
+type CardFieldProps = {
   title: string;
   onClick?: () => void;
   icon?: IconType;
 };
 
-const Card = (props: CardProps) => {
+const CardField = (props: CardFieldProps) => {
   const [click, isClick] = useState(true);
 
   if (click) {
@@ -30,4 +29,4 @@ const Card = (props: CardProps) => {
   );
 };
 
-export default Card;
+export default CardField;
