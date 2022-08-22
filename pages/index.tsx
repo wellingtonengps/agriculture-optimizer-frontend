@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Card, CardField, CardList } from "../components";
+import { Card, CardField, CardList, Modal } from "../components";
 import styles from "../styles/Home.module.css";
 
-import { FaMoneyBillWave, FaSeedling, FaSave } from "react-icons/fa";
-import { BsGraphUp } from "react-icons/bs";
+import { FaSeedling, FaSave } from "react-icons/fa";
+import { BsFileEarmarkBarGraph, BsCurrencyDollar } from "react-icons/bs";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [value, setValue] = useState("");
+
   return (
     <>
       <Head>
@@ -19,15 +22,15 @@ const Home: NextPage = () => {
         <div className={styles.menu}>
           <div className={styles.wrapperButton}>
             <button>
-              <FaSeedling style={{ fontSize: 35 }} />
+              <FaSeedling style={{ fontSize: 25 }} />
               <span>Criar</span>
             </button>
             <button>
-              <BsGraphUp style={{ fontSize: 35 }} />
+              <BsFileEarmarkBarGraph style={{ fontSize: 25 }} />
               <span>Otimizar</span>
             </button>
             <button>
-              <FaSave style={{ fontSize: 35 }} />
+              <FaSave style={{ fontSize: 25 }} />
               <span>Salvar</span>
             </button>
           </div>
@@ -36,9 +39,8 @@ const Home: NextPage = () => {
           <div className={styles.optionSection}>
             <h1>Agriculture-Optimizer</h1>
             <div className={styles.wrapperRow}>
-              <Card title="Investimento" icon={FaMoneyBillWave} />
-              <Card title="Investimento" icon={FaMoneyBillWave} />
-              <Card title="Investimento" />
+              <Card title="Investimento" icon={BsCurrencyDollar} />
+              <Card title="Investimento" icon={BsCurrencyDollar} />
             </div>
           </div>
           <div className={styles.areaSection}>
@@ -55,7 +57,9 @@ const Home: NextPage = () => {
               <CardList title="Investimento" />
             </div>
           </div>
-          <button className={styles.button}>Otimizar</button>
+          <button className={styles.button} onClick={() => {}}>
+            Otimizar
+          </button>
         </div>
       </main>
     </>

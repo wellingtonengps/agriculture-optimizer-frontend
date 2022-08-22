@@ -1,32 +1,48 @@
-import { ReactNode, useState } from "react";
-import { IconBase, IconType } from "react-icons";
+import { IconType } from "react-icons";
 import styles from "./Card.module.css";
 
 import { AiOutlinePlus } from "react-icons/ai";
+import { useState } from "react";
+import Modal from "../Modal";
 
 type CardProps = {
   title: string;
-  onClick?: () => void;
   icon?: IconType;
 };
 
 const Card = (props: CardProps) => {
-  const [click, isClick] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState("");
 
-  if (click) {
+  if (value) {
     return (
-      <div className={styles.container}>
-        {props.icon ? <props.icon /> : <AiOutlinePlus />}
-      </div>
+      <>
+        {isOpen && <Modal setIsOpen={setIsOpen} type="Investimento" />}
+        <div
+          className={styles.containerActive}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {props.icon ? <props.icon size={30} /> : <AiOutlinePlus size={30} />}
+          <span>R$ {value}</span>
+        </div>
+      </>
     );
   }
 
   return (
-    <button onClick={props.onClick}>
-      <div className={styles.container}>
-        <h1>{props.title}</h1>
+    <>
+      {isOpen && (
+        <Modal setIsOpen={setIsOpen} type="Investimento">
+          <input
+            value={value}
+            onChange={(value) => setValue(value.target.value)}
+          />
+        </Modal>
+      )}
+      <div className={styles.container} onClick={() => setIsOpen(!isOpen)}>
+        {props.icon ? <props.icon size={30} /> : <AiOutlinePlus size={30} />}
       </div>
-    </button>
+    </>
   );
 };
 

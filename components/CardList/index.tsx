@@ -1,5 +1,4 @@
-import { ReactNode, useState } from "react";
-import { IconBase, IconType } from "react-icons";
+import { useState } from "react";
 import styles from "./CardList.module.css";
 
 import {
@@ -25,8 +24,8 @@ const CardList = (props: CardListProps) => {
   }
 
   return (
-    <div className={styles.container2}>
-      <span style={{ fontWeight: "bold" }}>Alface</span>
+    <div className={styles.containerActive}>
+      <span>Alface</span>
       <div className={styles.wrapperValues}>
         <div className={styles.input}>
           <AiOutlineArrowUp color="#2FC52C" />

@@ -3,7 +3,23 @@
   align-items: center;
   justify-content: center;
   background-color: #d1eedb;
-  border-radius: 47px;
-  height: 158px;
-  width: 226px;
+  border-radius: 40px;
+  height: 134px;
+  width: 190px;
+}
+
+.containerActive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1eedb;
+  border-radius: 40px;
+  height: 134px;
+  width: 190px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
 }
