@@ -7,22 +7,18 @@ type CardFieldProps = {
   onClick?: () => void;
   icon?: IconType;
   onChangeModal: () => void;
-  valueArea: string;
-  valueName: string;
+  area?: string;
+  name?: string;
+  type: "empty" | "full";
 };
 
 const CardField = (props: CardFieldProps) => {
-  const [active, isActive] = useState(true);
-
   return (
-    <div
-      className={styles.containerActive}
-      onClick={() => props.onChangeModal()}
-    >
-      {active ? (
+    <div className={styles.container} onClick={() => props.onChangeModal()}>
+      {props.type == "full" ? (
         <>
-          <span style={{ fontSize: 28 }}>{props.valueName}</span>
-          <span style={{ fontSize: 20 }}>{props.valueArea}</span>
+          <span style={{ fontSize: 28 }}>{props.name}</span>
+          <span style={{ fontSize: 20 }}>{props.area}</span>
         </>
       ) : (
         <AiOutlinePlus size={25} />

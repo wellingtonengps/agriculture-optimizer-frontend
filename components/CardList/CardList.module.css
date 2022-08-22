@@ -1,17 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #f0f5d1;
-  border-radius: 24px;
-  height: 80px;
-  width: 909px;
-  margin-bottom: 0;
-}
-
-.containerActive {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   background-color: #f0f5d1;
   border-radius: 20px;
@@ -23,9 +12,16 @@
   font-size: 25px;
 }
 
-.wrapperValues {
+.wrapperFull {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperEmpty {
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 }

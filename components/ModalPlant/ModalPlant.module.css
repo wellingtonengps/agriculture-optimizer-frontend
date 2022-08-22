@@ -17,8 +17,12 @@
 }
 
 .modal {
-  width: 250px;
-  height: 170px;
+  align-items: center;
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 350px;
   background: white;
   color: white;
   z-index: 10;
@@ -44,6 +48,8 @@
 }
 
 .modalContent {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   font-size: 14px;
   color: #2c3e50;
@@ -123,4 +129,45 @@
   box-shadow: none;
   transform: none;
   background: whitesmoke;
+}
+
+.itemList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f5d1;
+  border-radius: 10px;
+  padding: 0 45px 0 45px;
+  height: 40px;
+  width: 340px;
+  margin-bottom: 15px;
+
+  font-size: 20px;
+}
+
+.wrapperFull {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperEmpty {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 49px;
+}
+
+.output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -4,14 +4,14 @@ import { RiCloseLine } from "react-icons/ri";
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  syncData: (investimento: number) => void;
+  syncInvestiment: (investimento: number) => void;
 };
 
 const ModalInvestimento = (props: ModalProps) => {
   const [valueInvestiment, setValueInvestiment] = useState("");
 
   function handleValue() {
-    props.syncData(parseInt(valueInvestiment));
+    props.syncInvestiment(parseInt(valueInvestiment));
     props.setIsOpen(false);
   }
 

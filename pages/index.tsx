@@ -19,47 +19,85 @@ type fieldProps = {
   area: string;
 };
 
-type dataProps = {
-  investimento: number | null;
-  fields: fieldProps[];
+type plantProps = {
+  name: string;
+  value: number;
+  cost: number;
 };
+
+type dataProps = {
+  investiment: number | null;
+  fields: fieldProps[];
+  plants: plantProps[];
+};
+
+const listPlants = [
+  {
+    id: 1,
+    name: "alface",
+    price: 5.0,
+    cost: 2.0,
+  },
+  {
+    id: 2,
+    name: "couve",
+    price: 10.0,
+    cost: 5.0,
+  },
+  {
+    id: 3,
+    name: "repolho",
+    price: 1.5,
+    cost: 1.0,
+  },
+  {
+    id: 4,
+    name: "cebola",
+    price: 3.0,
+    cost: 2.5,
+  },
+  {
+    id: 5,
+    name: "abóbora",
+    price: 12.0,
+    cost: 10.0,
+  },
+];
 
 const Home: NextPage = () => {
   const [isOpenModalInvestimento, setIsOpenModalInvestimento] = useState(false);
   const [isOpenModalField, setIsOpenModalField] = useState(false);
   const [isOpenModalPlants, setIsOpenModalPlants] = useState(false);
 
-  const [name, setName] = useState("");
-  const [area, setArea] = useState("");
-  const [investimento, setInvestimento] = useState(null);
-
   const [data, setData] = useState<dataProps>({
     fields: [],
-    investimento,
+    investiment: null,
+    plants: [],
   } as dataProps);
 
-  function addData(newData: fieldProps) {
+  function syncFields(newData: fieldProps) {
     setData((prevData) => ({
-      investimento: prevData.investimento,
+      investiment: prevData.investiment,
       fields: [...prevData.fields, newData],
+      plants: [...prevData.plants],
     }));
   }
 
-  function addDataInvestimento(newInvestimento: number) {
+  function syncInvestiment(newInvestiment: number) {
     setData((prevData) => ({
-      investimento: newInvestimento,
+      investiment: newInvestiment,
       fields: [...prevData.fields],
+      plants: [...prevData.plants],
     }));
   }
 
-  function addDataPlants(newData: fieldProps) {
+  function syncPlants(newPlant: plantProps) {
     setData((prevData) => ({
-      investimento: prevData.investimento,
-      fields: [...prevData.fields, newData],
+      investiment: prevData.investiment,
+      fields: [...prevData.fields],
+      plants: [...prevData.plants, newPlant],
     }));
   }
-
-  console.log(data);
 
   function onChangeModalInvestimento() {
     setIsOpenModalInvestimento(!isOpenModalInvestimento);
@@ -84,18 +122,18 @@ const Home: NextPage = () => {
       {isOpenModalInvestimento && (
         <ModalInvestimento
           setIsOpen={setIsOpenModalInvestimento}
-          syncData={addDataInvestimento}
+          syncInvestiment={syncInvestiment}
         />
       )}
       {isOpenModalField && (
         <ModalField
           setIsOpen={setIsOpenModalField}
-          setArea={setArea}
-          setName={setName}
-          syncData={addData}
+          syncDataField={syncFields}
         />
       )}
-      {isOpenModalPlants && <ModalPlant setIsOpen={setIsOpenModalPlants} />}
+      {isOpenModalPlants && (
+        <ModalPlant setIsOpen={setIsOpenModalPlants} listPlants={listPlants} />
+      )}
 
       <main className={styles.main}>
         <div className={styles.menu}>
@@ -119,7 +157,7 @@ const Home: NextPage = () => {
             <h1>Agriculture-Optimizer</h1>
             <div className={styles.wrapperRow}>
               <Card
-                investimento={investimento!}
+                investiment={data.investiment}
                 onChangeModal={onChangeModalInvestimento}
                 icon={BsCurrencyDollar}
               />
@@ -128,23 +166,24 @@ const Home: NextPage = () => {
           <div className={styles.areaSection}>
             <h2>Manage your fields</h2>
             <div className={styles.wrapperRow}>
-              <CardField
-                valueArea={area}
-                valueName={name}
-                onChangeModal={onChangeModalField}
-              />
-              <CardField
-                valueArea={area}
-                valueName={name}
-                onChangeModal={onChangeModalField}
-              />
+              {data.fields.map((data) => {
+                return (
+                  <CardField
+                    key={data.name}
+                    type="full"
+                    area={data.area}
+                    name={data.name}
+                    onChangeModal={onChangeModalField}
+                  />
+                );
+              })}
+              <CardField type="empty" onChangeModal={onChangeModalField} />
             </div>
           </div>
           <div className={styles.plantSection}>
             <h2>Manage your plants</h2>
             <div className={styles.wrapperColumn}>
-              <CardList />
-              <CardList />
+              <CardList type="empty" onChangeModal={onChangeModalPlants} />
             </div>
           </div>
           <button className={styles.button} onClick={() => {}}>
