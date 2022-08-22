@@ -8,7 +8,6 @@ import {
 } from "react-icons/ai";
 
 type CardListProps = {
-  title: string;
   onClick?: () => void;
 };
 
