@@ -35,7 +35,7 @@ const ModalPlant = (props: ModalProps) => {
           <div className={styles.modalContent}>
             {props.listPlants.map((data) => {
               return (
-                <div key={data.name} className={styles.itemList}>
+                <div key={data.id} className={styles.itemList}>
                   <span>{data.name}</span>
                   <div className={styles.wrapperFull}>
                     <div className={styles.input}>
@@ -53,12 +53,6 @@ const ModalPlant = (props: ModalProps) => {
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => props.setIsOpen(false)}
-              >
-                Delete
-              </button>
               <button
                 className={styles.addBtn}
                 onClick={() => props.setIsOpen(false)}

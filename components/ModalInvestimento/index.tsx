@@ -30,19 +30,15 @@ const ModalInvestimento = (props: ModalProps) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
+            <span>Valor:</span>
             <input
+              className={styles.input}
               value={valueInvestiment!}
               onChange={(event) => setValueInvestiment(event.target.value)}
             />
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => props.setIsOpen(false)}
-              >
-                Delete
-              </button>
               <button className={styles.addBtn} onClick={handleValue}>
                 Adicionar
               </button>

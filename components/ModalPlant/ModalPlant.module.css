@@ -18,11 +18,10 @@
 
 .modal {
   align-items: center;
-  justify-content: start;
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 350px;
+  height: 400px;
   background: white;
   color: white;
   z-index: 10;

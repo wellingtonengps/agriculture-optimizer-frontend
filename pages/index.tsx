@@ -136,22 +136,6 @@ const Home: NextPage = () => {
       )}
 
       <main className={styles.main}>
-        <div className={styles.menu}>
-          <div className={styles.wrapperButton}>
-            <button>
-              <FaSeedling style={{ fontSize: 25 }} />
-              <span>Criar</span>
-            </button>
-            <button>
-              <BsFileEarmarkBarGraph style={{ fontSize: 25 }} />
-              <span>Otimizar</span>
-            </button>
-            <button>
-              <FaSave style={{ fontSize: 25 }} />
-              <span>Salvar</span>
-            </button>
-          </div>
-        </div>
         <div className={styles.body}>
           <div className={styles.optionSection}>
             <h1>Agriculture-Optimizer</h1>

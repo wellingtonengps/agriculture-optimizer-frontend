@@ -27,7 +27,7 @@ const ModalField = (props: ModalProps) => {
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Investimento</h5>
+            <h5 className={styles.heading}>Área</h5>
           </div>
           <button
             className={styles.closeBtn}
@@ -36,23 +36,21 @@ const ModalField = (props: ModalProps) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
+            <span>Nome:</span>
             <input
+              className={styles.input}
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
+            <span>Tamanho:</span>
             <input
+              className={styles.input}
               value={area}
               onChange={(event) => setArea(event.target.value)}
             />
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => props.setIsOpen(false)}
-              >
-                Delete
-              </button>
               <button className={styles.addBtn} onClick={handleField}>
                 Adicionar
               </button>

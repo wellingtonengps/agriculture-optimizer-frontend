@@ -124,3 +124,20 @@
   transform: none;
   background: whitesmoke;
 }
+
+.input {
+  width: 200px;
+  height: 35px;
+  background-color: #3333;
+  border: none;
+  border-radius: 10px;
+
+  padding-left: 10px;
+
+  color: #333333;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+}
