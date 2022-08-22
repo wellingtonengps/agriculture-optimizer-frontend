@@ -2,21 +2,30 @@ import React, { ReactNode, useState } from "react";
 import styles from "./ModalField.module.css";
 import { RiCloseLine } from "react-icons/ri";
 
+type fieldProps = {
+  name: string;
+  area: string;
+};
+
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children?: ReactNode;
   setValue?: (value: string) => void;
   setArea: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  syncData: ({ name, area }: fieldProps) => void;
 };
 
 const ModalField = (props: ModalProps) => {
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
 
+  console.log(name, area);
+
   function handleField() {
     props.setArea(area);
     props.setName(name);
+    props.syncData({ name, area });
     props.setIsOpen(false);
   }
 

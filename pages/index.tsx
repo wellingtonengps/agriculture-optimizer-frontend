@@ -14,28 +14,15 @@ import { FaSeedling, FaSave } from "react-icons/fa";
 import { BsFileEarmarkBarGraph, BsCurrencyDollar } from "react-icons/bs";
 import { useState } from "react";
 
-const array = [
-  {
-    id: 1,
-    name: "campo 1",
-    area: "200m",
-  },
-  {
-    id: 2,
-    name: "campo 2",
-    area: "200m",
-  },
-  {
-    id: 3,
-    name: "campo 3",
-    area: "200m",
-  },
-  {
-    id: 4,
-    name: "campo 4",
-    area: "200m",
-  },
-];
+type fieldProps = {
+  name: string;
+  area: string;
+};
+
+type dataProps = {
+  investimento: string;
+  fields: fieldProps[];
+};
 
 const Home: NextPage = () => {
   const [isOpenModalInvestimento, setIsOpenModalInvestimento] = useState(false);
@@ -44,10 +31,21 @@ const Home: NextPage = () => {
 
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
-
-  console.log(area, name);
-
   const [investimento, setInvestimento] = useState("");
+
+  const [data, setData] = useState<dataProps>({
+    fields: [],
+    investimento,
+  } as dataProps);
+
+  function addData(newData: fieldProps) {
+    setData((prevData) => ({
+      investimento: prevData.investimento,
+      fields: [...prevData.fields, newData],
+    }));
+  }
+
+  console.log(data);
 
   function onChangeModalInvestimento() {
     setIsOpenModalInvestimento(!isOpenModalInvestimento);
@@ -80,6 +78,7 @@ const Home: NextPage = () => {
           setIsOpen={setIsOpenModalField}
           setArea={setArea}
           setName={setName}
+          syncData={addData}
         />
       )}
       {isOpenModalPlants && <ModalPlant setIsOpen={setIsOpenModalPlants} />}
