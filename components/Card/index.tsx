@@ -5,7 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 
 type CardProps = {
-  investimento: string;
+  investimento: number;
   icon?: IconType;
   onChangeModal: () => void;
 };

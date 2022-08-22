@@ -4,15 +4,14 @@ import { RiCloseLine } from "react-icons/ri";
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  children?: ReactNode;
-  setInvestimento: (value: string) => void;
+  syncData: (investimento: number) => void;
 };
 
 const ModalInvestimento = (props: ModalProps) => {
-  const [value, setValue] = useState("");
+  const [valueInvestiment, setValueInvestiment] = useState("");
 
   function handleValue() {
-    props.setInvestimento(value);
+    props.syncData(parseInt(valueInvestiment));
     props.setIsOpen(false);
   }
 
@@ -32,8 +31,8 @@ const ModalInvestimento = (props: ModalProps) => {
           </button>
           <div className={styles.modalContent}>
             <input
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={valueInvestiment!}
+              onChange={(event) => setValueInvestiment(event.target.value)}
             />
           </div>
           <div className={styles.modalActions}>

@@ -9,7 +9,6 @@ type fieldProps = {
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  children?: ReactNode;
   setValue?: (value: string) => void;
   setArea: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;

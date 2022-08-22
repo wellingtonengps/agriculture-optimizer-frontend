@@ -20,7 +20,7 @@ type fieldProps = {
 };
 
 type dataProps = {
-  investimento: string;
+  investimento: number | null;
   fields: fieldProps[];
 };
 
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
-  const [investimento, setInvestimento] = useState("");
+  const [investimento, setInvestimento] = useState(null);
 
   const [data, setData] = useState<dataProps>({
     fields: [],
@@ -39,6 +39,20 @@ const Home: NextPage = () => {
   } as dataProps);
 
   function addData(newData: fieldProps) {
+    setData((prevData) => ({
+      investimento: prevData.investimento,
+      fields: [...prevData.fields, newData],
+    }));
+  }
+
+  function addDataInvestimento(newInvestimento: number) {
+    setData((prevData) => ({
+      investimento: newInvestimento,
+      fields: [...prevData.fields],
+    }));
+  }
+
+  function addDataPlants(newData: fieldProps) {
     setData((prevData) => ({
       investimento: prevData.investimento,
       fields: [...prevData.fields, newData],
@@ -70,7 +84,7 @@ const Home: NextPage = () => {
       {isOpenModalInvestimento && (
         <ModalInvestimento
           setIsOpen={setIsOpenModalInvestimento}
-          setInvestimento={setInvestimento}
+          syncData={addDataInvestimento}
         />
       )}
       {isOpenModalField && (
@@ -105,7 +119,7 @@ const Home: NextPage = () => {
             <h1>Agriculture-Optimizer</h1>
             <div className={styles.wrapperRow}>
               <Card
-                investimento={investimento}
+                investimento={investimento!}
                 onChangeModal={onChangeModalInvestimento}
                 icon={BsCurrencyDollar}
               />
