@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Result.module.css";
+import styles from "../styles/Save.module.css";
 
-const Result: NextPage = () => {
+const Save: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Result Optimizer</title>
+        <title>Save Optimizer</title>
       </Head>
       <main className={styles.main}>
         <div className={styles.body}></div>
@@ -15,4 +15,4 @@ const Result: NextPage = () => {
   );
 };
 
-export default Result;
+export default Save;

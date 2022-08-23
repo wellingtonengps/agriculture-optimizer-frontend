@@ -47,12 +47,17 @@
 }
 
 .modalContent {
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
+  max-width: 360px;
+  max-height: 295px;
   flex-direction: column;
   padding: 10px;
   font-size: 14px;
   color: #2c3e50;
   text-align: center;
+  margin-bottom: 66px;
 }
 
 .modalActions {
@@ -137,8 +142,8 @@
   background-color: #f0f5d1;
   border-radius: 10px;
   padding: 0 45px 0 45px;
-  height: 40px;
-  width: 340px;
+  min-height: 40px;
+  min-width: 340px;
   margin-bottom: 15px;
 
   font-size: 20px;
@@ -169,4 +174,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* width */
+.modalContent::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.modalContent::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.modalContent::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

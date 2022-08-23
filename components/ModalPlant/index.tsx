@@ -2,19 +2,21 @@ import React, { ReactNode } from "react";
 import styles from "./ModalPlant.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import ItemList from "../ItemList";
 
-type plantProps = {
+type cropProps = {
   id: number;
   name: string;
   price: number;
   cost: number;
+  space: number;
 };
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
   setValue?: (value: string) => void;
-  listPlants: plantProps[];
+  listPlants: cropProps[];
 };
 
 const ModalPlant = (props: ModalProps) => {
@@ -24,7 +26,7 @@ const ModalPlant = (props: ModalProps) => {
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Investimento</h5>
+            <h5 className={styles.heading}>Plantas</h5>
           </div>
           <button
             className={styles.closeBtn}
@@ -34,21 +36,7 @@ const ModalPlant = (props: ModalProps) => {
           </button>
           <div className={styles.modalContent}>
             {props.listPlants.map((data) => {
-              return (
-                <div key={data.id} className={styles.itemList}>
-                  <span>{data.name}</span>
-                  <div className={styles.wrapperFull}>
-                    <div className={styles.input}>
-                      <AiOutlineArrowUp color="#2FC52C" />
-                      <span>{data.price}</span>
-                    </div>
-                    <div className={styles.output}>
-                      <AiOutlineArrowDown color="#EF1818" />
-                      <span>{data.cost}</span>
-                    </div>
-                  </div>
-                </div>
-              );
+              return ItemList(data);
             })}
           </div>
           <div className={styles.modalActions}>

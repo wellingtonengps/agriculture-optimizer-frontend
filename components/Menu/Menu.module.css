@@ -12,7 +12,8 @@
   margin-top: 39px;
 }
 
-.wrapperButton > button {
+.wrapperButton > a {
+  color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;

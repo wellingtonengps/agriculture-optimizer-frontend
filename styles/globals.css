@@ -24,3 +24,9 @@ a {
     background: #ffffff;
   }
 }
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+}
