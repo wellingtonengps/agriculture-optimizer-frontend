@@ -2,18 +2,25 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from "../styles/Result.module.css";
-import { solutionProps,solutionCropProps, cropProps } from "../types/types";
-import {fetchSolution} from "./api/api"
+import { solutionProps } from "../types/types";
+import { fetchSolution } from "./api/api";
 import SolutionCropItemList from "../components/SolutionCropItemList";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
-
+import { Card } from "../components";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { BiArea } from "react-icons/bi";
+import { useRouter } from "next/router";
 
 const Result: NextPage = () => {
-  const [solution, setSolution] = useState<solutionProps>()
+  const [solution, setSolution] = useState<solutionProps>();
+  const router = useRouter();
+  const query = router.query;
 
-  useEffect(()=>{
-    fetchSolution(6).then((data)=>{setSolution(data); console.log(data)})
-  }, [])
+  useEffect(() => {
+    fetchSolution(parseInt(query.id as string)).then((data) => {
+      setSolution(data);
+      console.log(data);
+    });
+  }, [query.id]);
 
   return (
     <>
@@ -21,10 +28,24 @@ const Result: NextPage = () => {
         <title>Result Optimizer</title>
       </Head>
       <main className={styles.main}>
-      
         <div className={styles.body}>
-        <h2>Solução {solution?.id}</h2>
-          {solution?.solutionCrops.map((item)=> {return <SolutionCropItemList data={item}/>})}
+          <h2>Solução {solution?.id}</h2>
+          <div className={styles.wrapperRow}>
+            <Card
+              text={solution?.inputData.budget?.toFixed(2).toString()}
+              onClick={() => {}}
+              icon={BsCurrencyDollar}
+            />
+            <Card
+              text={solution?.inputData.space?.toFixed(2).toString()}
+              onClick={() => {}}
+              icon={BiArea}
+            />
+          </div>
+          <h2>Culturas</h2>
+          {solution?.solutionCrops.map((item) => {
+            return <SolutionCropItemList key={item.id} data={item} />;
+          })}
         </div>
       </main>
     </>

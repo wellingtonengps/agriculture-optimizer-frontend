@@ -17,8 +17,12 @@ const ModalField = (props: ModalProps) => {
   const [area, setArea] = useState("");
 
   function handleField() {
-    props.syncDataField({ name: name, area: area });
-    props.setIsOpen(false);
+    if (area == "" || name == "") {
+      props.setIsOpen(false);
+    } else {
+      props.syncDataField({ name: name, area: area });
+      props.setIsOpen(false);
+    }
   }
 
   return (

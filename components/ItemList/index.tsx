@@ -10,22 +10,24 @@ type cropProps = {
   space: number;
 };
 
-type itemListProps={
-  data: cropProps
-}
+type itemListProps = {
+  data: cropProps;
+  handleSetSelection: (data: cropProps, isActive: boolean) => void;
+};
 
 const ItemList = (props: itemListProps) => {
-  const [active, setIsActive] = useState(false);
+  const [isActive, setActive] = useState(false);
 
   function handleSetActive() {
-    setIsActive(!active);
+    setActive(!isActive);
+    props.handleSetSelection(props.data, isActive);
   }
 
   return (
     <div
-      key={props.data.id}
       className={styles.itemList}
-      onClick={() => handleSetActive()}
+      onClick={handleSetActive}
+      style={{ backgroundColor: `${isActive ? "#f0f5d1" : "#d6d6d6"}` }}
     >
       <span>{props.data.name}</span>
       <div className={styles.wrapperFull}>

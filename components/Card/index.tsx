@@ -4,19 +4,16 @@ import styles from "./Card.module.css";
 import { AiOutlinePlus } from "react-icons/ai";
 
 type CardProps = {
-  investiment: number | null;
+  text: String | undefined;
   icon?: IconType;
-  onChangeModal: () => void;
+  onClick: () => void;
 };
 
 const Card = (props: CardProps) => {
   return (
-    <div
-      className={styles.containerActive}
-      onClick={() => props.onChangeModal()}
-    >
+    <div className={styles.containerActive} onClick={() => props.onClick()}>
       {props.icon ? <props.icon size={30} /> : <AiOutlinePlus size={30} />}
-      {props.investiment ? <span>R$ {props.investiment}</span> : null}
+      {props.text ? <span>{props.text}</span> : null}
     </div>
   );
 };

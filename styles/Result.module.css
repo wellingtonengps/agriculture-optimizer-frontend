@@ -35,3 +35,7 @@
   background-color: #333333;
   font-size: 25px;
 }
+
+.main {
+  flex: 1;
+}

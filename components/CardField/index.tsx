@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IconType } from "react-icons";
 import styles from "./CardField.module.css";
 import { AiOutlinePlus } from "react-icons/ai";

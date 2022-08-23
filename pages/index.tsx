@@ -13,22 +13,13 @@ import styles from "../styles/Home.module.css";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { fetchCrops, fetchSolutions, postUserInput } from "./api/api";
+import { inputDataProps } from "../types/types";
+
+import { useRouter } from "next/router";
 
 type fieldProps = {
   name: string;
   area: string;
-};
-
-type plantProps = {
-  name: string;
-  value: number;
-  cost: number;
-};
-
-type dataProps = {
-  investiment: number | null;
-  fields: fieldProps[];
-  plants: plantProps[];
 };
 
 export type cropProps = {
@@ -37,6 +28,12 @@ export type cropProps = {
   price: number;
   cost: number;
   space: number;
+};
+
+type dataProps = {
+  investiment: number | null;
+  fields: fieldProps[];
+  plants: cropProps[];
 };
 
 const listPlants = [
@@ -83,6 +80,7 @@ const Home: NextPage = () => {
   const [isOpenModalField, setIsOpenModalField] = useState(false);
   const [isOpenModalPlants, setIsOpenModalPlants] = useState(false);
   const [crops, setCrops] = useState<cropProps[]>();
+  const router = useRouter();
 
   const [data, setData] = useState<dataProps>({
     fields: [],
@@ -93,9 +91,22 @@ const Home: NextPage = () => {
   useEffect(() => {
     fetchCrops().then((data) => {
       setCrops(data);
-      console.log(data);
+      //console.log(data);
     });
   }, []);
+
+  function handleOptimizeClick() {
+    const inputData: inputDataProps = {
+      budget: data.investiment!,
+      space: 0,
+      id: null,
+    };
+    postUserInput(inputData)
+      .then((res) => {
+        router.push({ pathname: "result", query: { id: res.id } });
+      })
+      .catch(() => alert("erro"));
+  }
 
   function syncFields(newData: fieldProps) {
     setData((prevData) => ({
@@ -113,11 +124,13 @@ const Home: NextPage = () => {
     }));
   }
 
-  function syncPlants(newPlant: plantProps) {
+  function syncPlants(newPlant: cropProps[]) {
+    console.log(newPlant);
+
     setData((prevData) => ({
       investiment: prevData.investiment,
       fields: [...prevData.fields],
-      plants: [...prevData.plants, newPlant],
+      plants: newPlant,
     }));
   }
 
@@ -152,7 +165,11 @@ const Home: NextPage = () => {
         />
       )}
       {isOpenModalPlants && (
-        <ModalPlant setIsOpen={setIsOpenModalPlants} listPlants={crops!} />
+        <ModalPlant
+          setIsOpen={setIsOpenModalPlants}
+          listPlants={crops!}
+          syncPlants={syncPlants}
+        />
       )}
 
       <div className={styles.body}>
@@ -160,8 +177,8 @@ const Home: NextPage = () => {
           <h1>Agriculture-Optimizer</h1>
           <div className={styles.wrapperRow}>
             <Card
-              investiment={data.investiment}
-              onChangeModal={onChangeModalInvestimento}
+              text={data.investiment?.toFixed(2).toString()}
+              onClick={onChangeModalInvestimento}
               icon={BsCurrencyDollar}
             />
           </div>
@@ -189,7 +206,7 @@ const Home: NextPage = () => {
             <CardList type="empty" onChangeModal={onChangeModalPlants} />
           </div>
         </div>
-        <button className={styles.button} onClick={() => {}}>
+        <button className={styles.button} onClick={handleOptimizeClick}>
           Otimizar
         </button>
       </div>

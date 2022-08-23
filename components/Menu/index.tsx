@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { BsFileEarmarkBarGraph } from "react-icons/bs";
+import { BsFillBarChartLineFill } from "react-icons/bs";
 import { FaSave, FaSeedling } from "react-icons/fa";
 import styles from "./Menu.module.css";
 
@@ -17,7 +17,7 @@ const Menu = () => {
           </Link>
           <Link href="/result">
             <a>
-              <BsFileEarmarkBarGraph style={{ fontSize: 25 }} />
+              <BsFillBarChartLineFill style={{ fontSize: 25 }} />
               <span>Otimizar</span>
             </a>
           </Link>
