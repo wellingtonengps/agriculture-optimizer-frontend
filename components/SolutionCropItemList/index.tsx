@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { solutionCropProps } from "../../types/types";
 import styles from "./ItemList.module.css";
 
 type cropProps = {
@@ -11,10 +12,10 @@ type cropProps = {
 };
 
 type itemListProps={
-  data: cropProps
+  data: solutionCropProps
 }
 
-const ItemList = (props: itemListProps) => {
+const SolutionCropItemList = (props: itemListProps) => {
   const [active, setIsActive] = useState(false);
 
   function handleSetActive() {
@@ -27,19 +28,23 @@ const ItemList = (props: itemListProps) => {
       className={styles.itemList}
       onClick={() => handleSetActive()}
     >
-      <span>{props.data.name}</span>
+      <span>{props.data.crop.name}</span>
       <div className={styles.wrapperFull}>
         <div className={styles.input}>
           <AiOutlineArrowUp color="#2FC52C" />
-          <span>{props.data.price}</span>
+          <span>{props.data.crop.price}</span>
         </div>
         <div className={styles.output}>
           <AiOutlineArrowDown color="#EF1818" />
-          <span>{props.data.cost}</span>
+          <span>{props.data.crop.cost}</span>
+        </div>
+
+        <div className={styles.output}>
+          <span>{props.data.amount}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default ItemList;
+export default SolutionCropItemList;

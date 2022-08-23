@@ -1,7 +1,9 @@
 import axios from "axios";
 import { cropProps } from "..";
+import { solutionProps, solutionCropProps } from "../../types/types";
 
 const hostName = "http://192.168.15.5:8080";
+
 
 export const fetchCrops = async () => {
   const response = await axios.get(`${hostName}/crop/get-all`).then();
@@ -9,8 +11,13 @@ export const fetchCrops = async () => {
 };
 
 export const fetchSolutions = async () => {
-  const response = await axios.get(`${hostName}/solutions/get-all`).then();
+  const response = await axios.get(`${hostName}/solution/get-all`).then();
   return response.data;
+};
+
+export const fetchSolution = async (id: number) => {
+  const response = await axios.get(`${hostName}/solution/get/${id}`).then();
+  return response.data as solutionProps;
 };
 
 export const postUserInput = async (data: any) => {
