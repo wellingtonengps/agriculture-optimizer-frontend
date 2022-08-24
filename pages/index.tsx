@@ -100,6 +100,7 @@ const Home: NextPage = () => {
       budget: data.investiment!,
       space: 0,
       id: null,
+      selectedCrops: data.plants
     };
     postUserInput(inputData)
       .then((res) => {
