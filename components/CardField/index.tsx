@@ -5,7 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 type CardFieldProps = {
   onClick?: () => void;
   icon?: IconType;
-  onChangeModal: () => void;
+  onChangeModal?: () => void;
   area?: string;
   name?: string;
   type: "empty" | "full";
@@ -13,7 +13,7 @@ type CardFieldProps = {
 
 const CardField = (props: CardFieldProps) => {
   return (
-    <div className={styles.container} onClick={() => props.onChangeModal()}>
+    <div className={styles.container} onClick={props.onChangeModal}>
       {props.type == "full" ? (
         <>
           <span style={{ fontSize: 28 }}>{props.name}</span>

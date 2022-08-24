@@ -149,7 +149,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create Farm</title>
+        <title>Agriculture | Create Farm</title>
       </Head>
 
       {isOpenModalInvestimento && (
@@ -175,6 +175,9 @@ const Home: NextPage = () => {
       <div className={styles.body}>
         <div className={styles.optionSection}>
           <h1>Agriculture-Optimizer</h1>
+          <span>
+            Helping you to make the right decision and seed your plants
+          </span>
           <div className={styles.wrapperRow}>
             <Card
               text={data.investiment?.toFixed(2).toString()}
@@ -185,6 +188,7 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.areaSection}>
           <h2>Manage your fields</h2>
+          <span>Select an area for sowing</span>
           <div className={styles.wrapperRow}>
             {data.fields.map((data) => {
               return (
@@ -193,7 +197,6 @@ const Home: NextPage = () => {
                   type="full"
                   area={data.area}
                   name={data.name}
-                  onChangeModal={onChangeModalField}
                 />
               );
             })}
@@ -202,7 +205,11 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.plantSection}>
           <h2>Manage your plants</h2>
+          <span>Select the crops you want to plant</span>
           <div className={styles.wrapperColumn}>
+            {data.plants.map((data) => {
+              return <CardList key={data.id} type="full" data={data} />;
+            })}
             <CardList type="empty" onChangeModal={onChangeModalPlants} />
           </div>
         </div>

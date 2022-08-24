@@ -6,7 +6,7 @@ const Save: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Save Optimizer</title>
+        <title>Agriculture | Save Optimizer</title>
       </Head>
       <main className={styles.main}>
         <div className={styles.body}></div>

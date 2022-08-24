@@ -5,6 +5,18 @@
   margin-left: 115px;
 }
 
+.optionSection h1 {
+  margin-bottom: 5px;
+}
+
+.areaSection h2 {
+  margin-bottom: 5px;
+}
+
+.plantSection h2 {
+  margin-bottom: 5px;
+}
+
 .wrapperRow {
   display: flex;
   flex-direction: row;

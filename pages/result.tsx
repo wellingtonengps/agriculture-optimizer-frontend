@@ -25,8 +25,9 @@ const Result: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Result Optimizer</title>
+        <title>Agriculture | Result Optimizer</title>
       </Head>
+
       <main className={styles.main}>
         <div className={styles.body}>
           <h2>Solução {solution?.id}</h2>

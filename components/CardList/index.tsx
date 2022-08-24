@@ -6,29 +6,35 @@ import {
   AiOutlinePlus,
 } from "react-icons/ai";
 
+export type cropProps = {
+  id: number;
+  name: string;
+  price: number;
+  cost: number;
+  space: number;
+};
+
 type CardListProps = {
   onClick?: () => void;
-  onChangeModal: () => void;
+  onChangeModal?: () => void;
   type: "empty" | "full";
-  name?: string;
-  cost?: number;
-  value?: number;
+  data?: cropProps;
 };
 
 const CardList = (props: CardListProps) => {
   return (
-    <div className={styles.container} onClick={() => props.onChangeModal()}>
+    <div className={styles.container} onClick={props.onChangeModal!}>
       {props.type == "full" ? (
         <>
-          <span>{props.name}</span>
+          <span>{props.data?.name}</span>
           <div className={styles.wrapperFull}>
             <div className={styles.input}>
               <AiOutlineArrowUp color="#2FC52C" />
-              <span>{props.value}</span>
+              <span>{props.data?.price}</span>
             </div>
             <div className={styles.output}>
               <AiOutlineArrowDown color="#EF1818" />
-              <span>{props.cost}</span>
+              <span>{props.data?.cost}</span>
             </div>
           </div>
         </>

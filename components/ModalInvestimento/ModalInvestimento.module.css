@@ -18,7 +18,7 @@
 
 .modal {
   width: 250px;
-  height: 170px;
+  height: 190px;
   background: white;
   color: white;
   z-index: 10;
@@ -126,14 +126,14 @@
 }
 
 .input {
+  margin-bottom: 10px;
   width: 200px;
   height: 35px;
-  background-color: #3333;
+  background-color: #f1f1f1;
   border: none;
   border-radius: 10px;
-
+  margin-top: 5px;
   padding-left: 10px;
-
   color: #333333;
   font-size: 16px;
 }

@@ -27,7 +27,7 @@ const ItemList = (props: itemListProps) => {
     <div
       className={styles.itemList}
       onClick={handleSetActive}
-      style={{ backgroundColor: `${isActive ? "#f0f5d1" : "#d6d6d6"}` }}
+      style={{ backgroundColor: `${isActive ? "#f0f5d1" : "#f1f1f1"}` }}
     >
       <span>{props.data.name}</span>
       <div className={styles.wrapperFull}>
