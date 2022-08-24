@@ -6,7 +6,7 @@ import {
   inputDataProps,
 } from "../../types/types";
 
-const hostName = "http://192.168.15.5:8080";
+const hostName = "http://192.168.15.3:8080";
 
 export const fetchCrops = async () => {
   const response = await axios.get(`${hostName}/crop/get-all`).then();

@@ -8,6 +8,7 @@ export type inputDataProps = {
   id: number | null;
   budget: number;
   space: number;
+  selectedCrops: cropProps[]
 };
 
 export type fieldProps = {
