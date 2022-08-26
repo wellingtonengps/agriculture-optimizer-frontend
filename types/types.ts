@@ -8,12 +8,15 @@ export type inputDataProps = {
   id: number | null;
   budget: number;
   space: number;
-  selectedCrops: cropProps[]
+  selectedCrops: cropProps[];
+  fields: fieldProps[];
+
 };
 
 export type fieldProps = {
+  id: number | null;
   name: string;
-  area: string;
+  size: number;
 };
 
 export type plantProps = {
