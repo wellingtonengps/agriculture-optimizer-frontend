@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import styles from "./ItemList.module.css";
 
@@ -8,27 +8,29 @@ type cropProps = {
   price: number;
   cost: number;
   space: number;
-  active: boolean;
+  isActive: boolean;
 };
 
 type itemListProps = {
   data: cropProps;
-  handleSetSelection: (data: cropProps, isActive: boolean) => void;
+  //syncPlant: (plant: cropProps) => void;
 };
 
 const ItemList = (props: itemListProps) => {
-  const [isActive, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   function handleSetActive() {
-    setActive(!isActive);
-    props.handleSetSelection(props.data, isActive);
+    setIsActive(!isActive);
+    props.data.isActive = !props.data.isActive;
   }
 
   return (
     <div
       className={styles.itemList}
       onClick={handleSetActive}
-      style={{ backgroundColor: `${isActive ? "#f0f5d1" : "#f1f1f1"}` }}
+      style={{
+        backgroundColor: `${props.data.isActive ? "#f0f5d1" : "#f1f1f1"}`,
+      }}
     >
       <span>{props.data.name}</span>
       <div className={styles.wrapperFull}>

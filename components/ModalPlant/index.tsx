@@ -9,33 +9,18 @@ type cropProps = {
   price: number;
   cost: number;
   space: number;
+  isActive: boolean;
 };
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  syncPlants: (newPlants: cropProps[]) => void;
+  syncPlant: () => void;
   listPlants: cropProps[];
 };
 
 const ModalPlant = (props: ModalProps) => {
-  const [listSelections, setListSelections] = useState([] as cropProps[]);
-
-  function handleSetSelection(data: cropProps, isActive: boolean) {
-    if (!isActive) {
-      setListSelections((prevData) => [...prevData, data]);
-    } else {
-      const indexOfObject = listSelections.findIndex((object) => {
-        return object.id === data.id;
-      });
-
-      listSelections.splice(indexOfObject, 1);
-    }
-  }
-
-  console.log(listSelections);
-
-  function syncData() {
-    props.syncPlants(listSelections);
+  function handleSync() {
+    props.syncPlant();
     props.setIsOpen(false);
   }
 
@@ -55,16 +40,12 @@ const ModalPlant = (props: ModalProps) => {
           </button>
           <div className={styles.modalContent}>
             {props.listPlants.map((data) => (
-              <ItemList
-                key={data.id}
-                data={data}
-                handleSetSelection={handleSetSelection}
-              />
+              <ItemList key={data.id} data={data} />
             ))}
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <button className={styles.addBtn} onClick={syncData}>
+              <button className={styles.addBtn} onClick={handleSync}>
                 Adicionar
               </button>
             </div>

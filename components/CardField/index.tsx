@@ -1,6 +1,5 @@
 import { IconType } from "react-icons";
 import styles from "./CardField.module.css";
-import { AiOutlinePlus } from "react-icons/ai";
 import { RiCloseLine } from "react-icons/ri";
 
 type CardFieldProps = {

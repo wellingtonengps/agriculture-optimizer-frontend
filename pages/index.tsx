@@ -31,6 +31,7 @@ export type cropProps = {
   price: number;
   cost: number;
   space: number;
+  isActive: boolean;
 };
 
 type dataProps = {
@@ -39,51 +40,13 @@ type dataProps = {
   plants: cropProps[];
 };
 
-const listPlants = [
-  {
-    id: 1,
-    name: "alface",
-    price: 5.0,
-    cost: 2.0,
-  },
-  {
-    id: 2,
-    name: "couve",
-    price: 10.0,
-    cost: 5.0,
-  },
-  {
-    id: 3,
-    name: "repolho",
-    price: 1.5,
-    cost: 1.0,
-  },
-  {
-    id: 4,
-    name: "cebola",
-    price: 3.0,
-    cost: 2.5,
-  },
-  {
-    id: 5,
-    name: "abóbora",
-    price: 12.0,
-    cost: 10.0,
-  },
-  {
-    id: 6,
-    name: "brócolis",
-    price: 12.0,
-    cost: 10.0,
-  },
-];
-
 const Home: NextPage = () => {
   const [isOpenModalInvestimento, setIsOpenModalInvestimento] = useState(false);
   const [isOpenModalField, setIsOpenModalField] = useState(false);
   const [isOpenModalPlants, setIsOpenModalPlants] = useState(false);
   const [crops, setCrops] = useState<cropProps[]>();
   const router = useRouter();
+  const [projectName, setProjectName] = useState("");
 
   const [data, setData] = useState<dataProps>({
     fields: [],
@@ -91,12 +54,9 @@ const Home: NextPage = () => {
     plants: [],
   } as dataProps);
 
-  console.log(data);
-
   useEffect(() => {
     fetchCrops().then((data) => {
       setCrops(data);
-      //console.log(data);
     });
   }, []);
 
@@ -142,13 +102,13 @@ const Home: NextPage = () => {
     }));
   }
 
-  function syncPlants(newPlant: cropProps[]) {
-    console.log(newPlant);
+  function syncPlant() {
+    const plantsActive = crops?.filter((item: cropProps) => item.isActive);
 
     setData((prevData) => ({
       investiment: prevData.investiment,
       fields: [...prevData.fields],
-      plants: newPlant,
+      plants: plantsActive!,
     }));
   }
 
@@ -186,7 +146,7 @@ const Home: NextPage = () => {
         <ModalPlant
           setIsOpen={setIsOpenModalPlants}
           listPlants={crops!}
-          syncPlants={syncPlants}
+          syncPlant={syncPlant}
         />
       )}
 
@@ -196,6 +156,13 @@ const Home: NextPage = () => {
           <span>
             Helping you to make the right decision and seed your plants
           </span>
+          <h2>Model name</h2>
+          <input
+            className={styles.input}
+            value={projectName}
+            onChange={(event) => setProjectName(event.target.value)}
+          />
+          <h2>Investiment</h2>
           <div className={styles.wrapperRow}>
             <Card
               text={data.investiment?.toFixed(2).toString()}
