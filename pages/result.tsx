@@ -5,15 +5,23 @@ import styles from "../styles/Result.module.css";
 import { solutionProps } from "../types/types";
 import { fetchSolution } from "./api/api";
 import SolutionCropItemList from "../components/SolutionCropItemList";
-import { Card } from "../components";
+import { Button, Card } from "../components";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { BiArea } from "react-icons/bi";
 import { useRouter } from "next/router";
+import jsPDF from "jspdf";
+("jspdf");
 
 const Result: NextPage = () => {
   const [solution, setSolution] = useState<solutionProps>();
   const router = useRouter();
   const query = router.query;
+
+  function handleGeneratePdf() {
+    const modelName = "Teste";
+
+    var doc = new jsPDF("p", "pt", "a4", true);
+  }
 
   useEffect(() => {
     fetchSolution(parseInt(query.id as string)).then((data) => {
@@ -47,6 +55,7 @@ const Result: NextPage = () => {
           {solution?.solutionCrops.map((item) => {
             return <SolutionCropItemList key={item.id} data={item} />;
           })}
+          <Button title="Salvar" onClick={handleGeneratePdf} />
         </div>
       </main>
     </>

@@ -5,6 +5,7 @@ import ModalField from "./ModalField";
 import ModalInvestimento from "./ModalInvestimento";
 import ModalPlant from "./ModalPlant";
 import Menu from "./Menu";
+import Button from "./Button";
 
 export {
   Card,
@@ -14,4 +15,5 @@ export {
   ModalPlant,
   ModalField,
   Menu,
+  Button,
 };

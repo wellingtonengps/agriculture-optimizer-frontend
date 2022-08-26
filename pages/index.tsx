@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import {
+  Button,
   Card,
   CardField,
   CardList,
@@ -16,10 +17,12 @@ import { fetchCrops, fetchSolutions, postUserInput } from "./api/api";
 import { inputDataProps } from "../types/types";
 
 import { useRouter } from "next/router";
+import { AiOutlinePlus } from "react-icons/ai";
 
 type fieldProps = {
+  id: number;
   name: string;
-  area: string;
+  area: number;
 };
 
 export type cropProps = {
@@ -88,6 +91,8 @@ const Home: NextPage = () => {
     plants: [],
   } as dataProps);
 
+  console.log(data);
+
   useEffect(() => {
     fetchCrops().then((data) => {
       setCrops(data);
@@ -95,12 +100,24 @@ const Home: NextPage = () => {
     });
   }, []);
 
+  function handleRemoveField(id: number) {
+    const indexOfObject = data.fields.findIndex((object) => {
+      return object.id === id;
+    });
+
+    setData((prevData) => ({
+      investiment: prevData.investiment,
+      fields: data.fields.splice(indexOfObject, 1),
+      plants: [...prevData.plants],
+    }));
+  }
+
   function handleOptimizeClick() {
     const inputData: inputDataProps = {
       budget: data.investiment!,
       space: 0,
       id: null,
-      selectedCrops: data.plants
+      selectedCrops: data.plants,
     };
     postUserInput(inputData)
       .then((res) => {
@@ -191,17 +208,20 @@ const Home: NextPage = () => {
           <h2>Manage your fields</h2>
           <span>Select an area for sowing</span>
           <div className={styles.wrapperRow}>
-            {data.fields.map((data) => {
+            {data.fields.map((data, index) => {
               return (
                 <CardField
-                  key={data.name}
-                  type="full"
+                  index={index}
+                  key={index}
                   area={data.area}
                   name={data.name}
+                  removePlant={handleRemoveField}
                 />
               );
             })}
-            <CardField type="empty" onChangeModal={onChangeModalField} />
+            <button className={styles.buttonField} onClick={onChangeModalField}>
+              <AiOutlinePlus size={25} />
+            </button>
           </div>
         </div>
         <div className={styles.plantSection}>
@@ -214,9 +234,7 @@ const Home: NextPage = () => {
             <CardList type="empty" onChangeModal={onChangeModalPlants} />
           </div>
         </div>
-        <button className={styles.button} onClick={handleOptimizeClick}>
-          Otimizar
-        </button>
+        <Button title="Otimizar" onClick={handleOptimizeClick} />
       </div>
     </>
   );

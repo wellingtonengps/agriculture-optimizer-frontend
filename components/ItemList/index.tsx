@@ -8,6 +8,7 @@ type cropProps = {
   price: number;
   cost: number;
   space: number;
+  active: boolean;
 };
 
 type itemListProps = {

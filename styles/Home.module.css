@@ -39,11 +39,15 @@
   margin-bottom: 15px;
 }
 
-.button {
-  height: 60px;
-  width: 250px;
-  border-radius: 30px;
+.buttonField {
   border: none;
-  background-color: #333333;
-  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1eedb;
+  border-radius: 40px;
+  height: 134px;
+  width: 190px;
+  color: #333;
 }

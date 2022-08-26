@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./ModalPlant.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import ItemList from "../ItemList";
-import { plantProps } from "../../types/types";
 
 type cropProps = {
   id: number;
