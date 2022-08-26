@@ -1,5 +1,5 @@
 import axios from "axios";
-import { cropProps } from "..";
+import { cropProps } from "../../types/types";
 import {
   solutionProps,
   solutionCropProps,
@@ -24,6 +24,6 @@ export const fetchSolution = async (id: number) => {
 };
 
 export const postUserInput = async (data: inputDataProps) => {
-  const response = await axios.post(`${hostName}/main/solve`, data).then();
+  const response = await axios.post(`${hostName}/main/solve-new`, data).then();
   return response.data as solutionProps;
 };

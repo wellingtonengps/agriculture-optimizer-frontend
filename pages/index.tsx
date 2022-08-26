@@ -14,24 +14,11 @@ import styles from "../styles/Home.module.css";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { fetchCrops, fetchSolutions, postUserInput } from "./api/api";
-import { inputDataProps } from "../types/types";
+import { inputDataProps, fieldProps, cropProps } from "../types/types";
 
 import { useRouter } from "next/router";
 import { AiOutlinePlus } from "react-icons/ai";
 
-type fieldProps = {
-  id: number;
-  name: string;
-  area: number;
-};
-
-export type cropProps = {
-  id: number;
-  name: string;
-  price: number;
-  cost: number;
-  space: number;
-};
 
 type dataProps = {
   investiment: number | null;
@@ -118,6 +105,7 @@ const Home: NextPage = () => {
       space: 0,
       id: null,
       selectedCrops: data.plants,
+      fields: data.fields
     };
     postUserInput(inputData)
       .then((res) => {
@@ -213,7 +201,7 @@ const Home: NextPage = () => {
                 <CardField
                   index={index}
                   key={index}
-                  area={data.area}
+                  area={data.size}
                   name={data.name}
                   removePlant={handleRemoveField}
                 />

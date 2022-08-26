@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styles from "./ModalField.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import {fieldProps} from "../../types/types"
 
-type fieldProps = {
+/*type fieldProps = {
   id: number;
   name: string;
   area: number;
-};
+};*/
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  syncDataField: ({ id, name, area }: fieldProps) => void;
+  syncDataField: ({ id, name, size }: fieldProps) => void;
 };
 
 const ModalField = (props: ModalProps) => {
@@ -22,9 +23,9 @@ const ModalField = (props: ModalProps) => {
       props.setIsOpen(false);
     } else {
       props.syncDataField({
-        id: parseInt(area),
+        id: null,
         name: name,
-        area: parseInt(area),
+        size: parseInt(area),
       });
       props.setIsOpen(false);
     }
