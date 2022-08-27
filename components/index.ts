@@ -2,18 +2,20 @@ import Card from "./Card";
 import CardField from "./CardField";
 import CardList from "./CardList";
 import ModalField from "./ModalField";
-import ModalInvestimento from "./ModalInvestimento";
+import Modal from "./Modal";
 import ModalPlant from "./ModalPlant";
 import Menu from "./Menu";
 import Button from "./Button";
+import CardResult from "./CardResult";
 
 export {
   Card,
   CardList,
   CardField,
-  ModalInvestimento,
+  Modal,
   ModalPlant,
   ModalField,
   Menu,
   Button,
+  CardResult,
 };

@@ -7,12 +7,22 @@ type CardProps = {
   text: String | undefined;
   icon?: IconType;
   onClick: () => void;
+  color?: string;
+  title?: string;
 };
 
 const Card = (props: CardProps) => {
   return (
-    <div className={styles.containerActive} onClick={() => props.onClick()}>
-      {props.icon ? <props.icon size={30} /> : <AiOutlinePlus size={30} />}
+    <div
+      className={styles.containerActive}
+      style={{ backgroundColor: props.color }}
+      onClick={() => props.onClick()}
+    >
+      {props.icon ? (
+        <props.icon size={30} style={{ marginBottom: 10 }} />
+      ) : (
+        <AiOutlinePlus size={30} />
+      )}
       {props.text ? <span>{props.text}</span> : null}
     </div>
   );

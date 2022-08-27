@@ -1,17 +1,19 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import styles from "./ModalInvestimento.module.css";
 import { RiCloseLine } from "react-icons/ri";
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  syncInvestiment: (investimento: number) => void;
+  syncData: (data: string) => void;
+  title: string;
+  inputName: string;
 };
 
-const ModalInvestimento = (props: ModalProps) => {
-  const [valueInvestiment, setValueInvestiment] = useState("");
+const Modal = (props: ModalProps) => {
+  const [data, setData] = useState("");
 
   function handleValue() {
-    props.syncInvestiment(parseInt(valueInvestiment));
+    props.syncData(data);
     props.setIsOpen(false);
   }
 
@@ -21,7 +23,7 @@ const ModalInvestimento = (props: ModalProps) => {
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Investimento</h5>
+            <h5 className={styles.heading}>{props.title}</h5>
           </div>
           <button
             className={styles.closeBtn}
@@ -30,11 +32,11 @@ const ModalInvestimento = (props: ModalProps) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            <span>Valor:</span>
+            <span>{props.inputName}</span>
             <input
               className={styles.input}
-              value={valueInvestiment!}
-              onChange={(event) => setValueInvestiment(event.target.value)}
+              value={data!}
+              onChange={(event) => setData(event.target.value)}
             />
           </div>
           <div className={styles.modalActions}>
@@ -50,4 +52,4 @@ const ModalInvestimento = (props: ModalProps) => {
   );
 };
 
-export default ModalInvestimento;
+export default Modal;

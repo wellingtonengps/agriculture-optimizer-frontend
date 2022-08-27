@@ -6,12 +6,13 @@ import {
   CardField,
   CardList,
   ModalField,
-  ModalInvestimento,
+  Modal,
   ModalPlant,
 } from "../components";
 import styles from "../styles/Home.module.css";
 
-import { BsCurrencyDollar } from "react-icons/bs";
+import { BsCurrencyDollar, BsFillCalendarRangeFill } from "react-icons/bs";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { fetchCrops, fetchSolutions, postUserInput } from "./api/api";
 import { inputDataProps, fieldProps, cropProps } from "../types/types";
@@ -23,21 +24,30 @@ type dataProps = {
   investiment: number | null;
   fields: fieldProps[];
   plants: cropProps[];
+  timeFrames: number | null;
+  modelName: string;
 };
 
 const Home: NextPage = () => {
   const [isOpenModalInvestimento, setIsOpenModalInvestimento] = useState(false);
   const [isOpenModalField, setIsOpenModalField] = useState(false);
   const [isOpenModalPlants, setIsOpenModalPlants] = useState(false);
+  const [isOpenModalModelName, setIsOpenModalModelName] = useState(false);
+  const [isOpenModalModelTimeFrames, setIsOpenModalTimeFrames] =
+    useState(false);
   const [crops, setCrops] = useState<cropProps[]>();
+
   const router = useRouter();
-  const [projectName, setProjectName] = useState("");
 
   const [data, setData] = useState<dataProps>({
     fields: [],
     investiment: null,
     plants: [],
+    timeFrames: null,
+    modelName: "",
   } as dataProps);
+
+  console.log(data);
 
   useEffect(() => {
     fetchCrops().then((data) => {
@@ -54,6 +64,8 @@ const Home: NextPage = () => {
       investiment: prevData.investiment,
       fields: data.fields.splice(indexOfObject, 1),
       plants: [...prevData.plants],
+      timeFrames: null,
+      modelName: "",
     }));
   }
 
@@ -64,10 +76,16 @@ const Home: NextPage = () => {
       id: null,
       selectedCrops: data.plants,
       fields: data.fields,
+      timeFrames: data.timeFrames!,
     };
     postUserInput(inputData)
       .then((res) => {
-        router.push({ pathname: "result", query: { id: res.id } });
+        router.push({
+          pathname: "result",
+          query: {
+            id: res.id,
+          },
+        });
       })
       .catch(() => alert("erro"));
   }
@@ -77,14 +95,18 @@ const Home: NextPage = () => {
       investiment: prevData.investiment,
       fields: [...prevData.fields, newData],
       plants: [...prevData.plants],
+      timeFrames: prevData.timeFrames,
+      modelName: "",
     }));
   }
 
-  function syncInvestiment(newInvestiment: number) {
+  function syncInvestiment(newInvestiment: string) {
     setData((prevData) => ({
-      investiment: newInvestiment,
+      investiment: parseInt(newInvestiment),
       fields: [...prevData.fields],
       plants: [...prevData.plants],
+      timeFrames: prevData.timeFrames,
+      modelName: "",
     }));
   }
 
@@ -95,11 +117,47 @@ const Home: NextPage = () => {
       investiment: prevData.investiment,
       fields: [...prevData.fields],
       plants: plantsActive!,
+      timeFrames: prevData.timeFrames,
+      modelName: "",
     }));
   }
 
-  function onChangeModalInvestimento() {
+  function syncTimesFrame(newTime: string) {
+    const plantsActive = crops?.filter((item: cropProps) => item.isActive);
+
+    setData((prevData) => ({
+      investiment: prevData.investiment,
+      fields: [...prevData.fields],
+      plants: plantsActive!,
+      timeFrames: parseInt(newTime),
+      modelName: prevData.modelName,
+    }));
+  }
+
+  function syncModelName(newNameModel: string) {
+    const plantsActive = crops?.filter((item: cropProps) => item.isActive);
+
+    setData((prevData) => ({
+      investiment: prevData.investiment,
+      fields: [...prevData.fields],
+      plants: plantsActive!,
+      timeFrames: prevData.timeFrames,
+      modelName: newNameModel,
+    }));
+  }
+
+  console.log(data);
+
+  function onChangeModelName() {
+    setIsOpenModalModelName(!isOpenModalModelName);
+  }
+
+  function onChangeModalInvestiment() {
     setIsOpenModalInvestimento(!isOpenModalInvestimento);
+  }
+
+  function onChangeModalTimeFrames() {
+    setIsOpenModalTimeFrames(!isOpenModalModelTimeFrames);
   }
 
   function onChangeModalField() {
@@ -115,11 +173,29 @@ const Home: NextPage = () => {
       <Head>
         <title>Agriculture | Create Farm</title>
       </Head>
-
+      {isOpenModalModelName && (
+        <Modal
+          title="Modelo"
+          inputName="Nome"
+          setIsOpen={setIsOpenModalModelName}
+          syncData={syncModelName}
+        />
+      )}
       {isOpenModalInvestimento && (
-        <ModalInvestimento
+        <Modal
+          title="Investimento"
+          inputName="Valor"
           setIsOpen={setIsOpenModalInvestimento}
-          syncInvestiment={syncInvestiment}
+          syncData={syncInvestiment}
+        />
+      )}
+
+      {isOpenModalModelTimeFrames && (
+        <Modal
+          title="Planejamento"
+          inputName="Tempo"
+          setIsOpen={setIsOpenModalTimeFrames}
+          syncData={syncTimesFrame}
         />
       )}
       {isOpenModalField && (
@@ -142,18 +218,28 @@ const Home: NextPage = () => {
           <span>
             Helping you to make the right decision and seed your plants
           </span>
-          <h2>Model name</h2>
-          <input
-            className={styles.input}
-            value={projectName}
-            onChange={(event) => setProjectName(event.target.value)}
-          />
-          <h2>Investiment</h2>
+
           <div className={styles.wrapperRow}>
             <Card
+              title="Nome do modelo"
+              text={data.modelName}
+              onClick={onChangeModelName}
+              icon={MdOutlineDriveFileRenameOutline}
+              color="#d1eff5"
+            />
+            <Card
+              title="Valor do inverstimento"
               text={data.investiment?.toFixed(2).toString()}
-              onClick={onChangeModalInvestimento}
+              onClick={onChangeModalInvestiment}
               icon={BsCurrencyDollar}
+              color="#f0f5d1"
+            />
+            <Card
+              title="Tempo de planejamento"
+              text={data.timeFrames?.toString()}
+              onClick={onChangeModalTimeFrames}
+              icon={BsFillCalendarRangeFill}
+              color="#d1eedb"
             />
           </div>
         </div>

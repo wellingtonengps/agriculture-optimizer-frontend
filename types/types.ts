@@ -2,6 +2,7 @@ export type solutionProps = {
   id: number;
   solutionCrops: solutionCropProps[];
   inputData: inputDataProps;
+  fields: fieldProps[];
 };
 
 export type inputDataProps = {
@@ -10,7 +11,7 @@ export type inputDataProps = {
   space: number;
   selectedCrops: cropProps[];
   fields: fieldProps[];
-
+  timeFrames: number | null;
 };
 
 export type fieldProps = {
@@ -37,10 +38,13 @@ export type cropProps = {
   price: number;
   cost: number;
   space: number;
+  isActive: boolean;
 };
 
 export type solutionCropProps = {
   id: number;
   amount: number;
   crop: cropProps;
+  timeFrame: number;
+  field: fieldProps;
 };

@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import styles from "./ModalPlant.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import ItemList from "../ItemList";
-
-type cropProps = {
-  id: number;
-  name: string;
-  price: number;
-  cost: number;
-  space: number;
-  isActive: boolean;
-};
+import { cropProps } from "../../types/types";
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

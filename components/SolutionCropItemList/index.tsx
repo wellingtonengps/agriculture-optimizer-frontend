@@ -35,15 +35,35 @@ const SolutionCropItemList = (props: itemListProps) => {
           </div>
           <div className={styles.rowItem}>
             <AiOutlineArrowUp color="#2FC52C" />
-            <span>{props.data.crop.price}</span>
+            <span>
+              {(
+                (props.data.field.size / props.data.crop.space) *
+                props.data.crop.price
+              ).toFixed(2)}
+            </span>
           </div>
           <div className={styles.rowItem}>
             <AiOutlineArrowDown color="#EF1818" />
-            <span>{props.data.crop.cost}</span>
+            <span>
+              {(
+                (props.data.field.size / props.data.crop.space) *
+                props.data.crop.cost
+              ).toFixed(2)}
+            </span>
           </div>
 
           <div className={styles.rowItem}>
-            <span>{props.data.amount}</span>
+            <span>
+              {(props.data.field.size / props.data.crop.space).toFixed(2)}
+            </span>
+          </div>
+
+          <div className={styles.rowItem}>
+            <span>{props.data.field.name}</span>
+          </div>
+
+          <div className={styles.rowItem}>
+            <span>{props.data.timeFrame}</span>
           </div>
         </div>
       </div>

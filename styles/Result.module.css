@@ -39,3 +39,18 @@
 .main {
   flex: 1;
 }
+
+.wrapperGrid {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 100px;
+  margin-top: 40px;
+}

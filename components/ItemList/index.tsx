@@ -13,7 +13,6 @@ type cropProps = {
 
 type itemListProps = {
   data: cropProps;
-  //syncPlant: (plant: cropProps) => void;
 };
 
 const ItemList = (props: itemListProps) => {
