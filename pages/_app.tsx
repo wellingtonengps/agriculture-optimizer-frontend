@@ -1,14 +1,23 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Menu } from "../components";
+import { DefaultTheme, ThemeProvider } from "styled-components";
+import GlobalStyle from "../styles/globalstyles";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const theme: DefaultTheme = {
+  colors: {
+    primary: "#111",
+    secondary: "#0070f3",
+  },
+};
+
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main>
-      <Menu />
-      <Component {...pageProps} /> <div id="modal-root"></div>
-    </main>
+    <>
+      <ThemeProvider theme={theme}>
+        <Menu />
+        <GlobalStyle />
+        <Component {...pageProps} /> <div id="modal-root"></div>
+      </ThemeProvider>
+    </>
   );
 }
-
-export default MyApp;
