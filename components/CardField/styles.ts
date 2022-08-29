@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #d1eedb;
+  background-color: #ebc7a8;
   border-radius: 40px;
   height: 134px;
   width: 190px;
@@ -34,6 +34,6 @@ export const CloseBtn = styled.div`
   margin-right: 19px;
 
   :hover {
-    color: #955;
+    color: #333;
   }
 `;

@@ -45,7 +45,7 @@ export const ButtonField = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #d1eedb;
+  background-color: #ebc7a8;
   border-radius: 40px;
   height: 134px;
   width: 190px;
@@ -56,7 +56,7 @@ export const ButtonCrop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f5d1;
+  background-color: #dbf2c2;
   border-radius: 15px;
   height: 63px;
   width: 750px;
