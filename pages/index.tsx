@@ -275,7 +275,7 @@ const Home: NextPage = () => {
           <span>Select the crops you want to plant</span>
           <WrapperColumn>
             {data.plants.map((data) => {
-              return <CardList key={data.id} type="full" data={data} />;
+              return <CardList key={data.id} data={data} />;
             })}
             <ButtonCrop onClick={onChangeModalPlants}>
               <AiOutlinePlus size={25} style={{ margin: 0 }} />

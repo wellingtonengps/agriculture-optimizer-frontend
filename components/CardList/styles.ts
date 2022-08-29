@@ -1,4 +1,6 @@
-.container {
+import styled from "styled-components";
+
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,31 +12,24 @@
   margin-bottom: 15px;
 
   font-size: 25px;
-}
+`;
 
-.wrapperFull {
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
+`;
 
-.wrapperEmpty {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.input {
+export const Input = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 49px;
-}
+`;
 
-.output {
+export const Output = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-}
+`;
