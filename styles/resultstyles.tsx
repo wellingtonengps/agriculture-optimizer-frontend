@@ -52,14 +52,3 @@ export const GridContainer = styled.div`
   margin-bottom: 100px;
   margin-top: 40px;
 `;
-
-export const WrapperLoading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-
-  iframe {
-    border: none;
-  }
-`;
