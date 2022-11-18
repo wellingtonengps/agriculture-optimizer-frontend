@@ -7,12 +7,249 @@ import { fetchSolution } from "./api/api";
 import SolutionCropItemList from "../components/SolutionCropItemList";
 import { Button, Card, CardResult } from "../components";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { BiArea } from "react-icons/bi";
 import { useRouter } from "next/router";
 import jsPDF from "jspdf";
 import { fileURLToPath } from "url";
 
 ("jspdf");
-
+/*
+const data = {
+  id: 61,
+  solutionCrops: [
+    {
+      id: 408,
+      amount: 0,
+      crop: {
+        id: 3,
+        name: "repolho",
+        price: 1.5,
+        cost: 1.0,
+        space: 0.3,
+        time: 1.0,
+        profit: 0.5,
+      },
+      price: 1.5,
+      space: 0.3,
+      time: 1.0,
+      cost: 1.0,
+      field: {
+        id: 32,
+        size: 10.0,
+        name: "Campo1",
+      },
+      timeFrame: 0,
+    },
+    {
+      id: 409,
+      amount: 0,
+      crop: {
+        id: 3,
+        name: "repolho",
+        price: 1.5,
+        cost: 1.0,
+        space: 0.3,
+        time: 1.0,
+        profit: 0.5,
+      },
+      price: 1.5,
+      space: 0.3,
+      time: 1.0,
+      cost: 1.0,
+      field: {
+        id: 33,
+        size: 10.0,
+        name: "Campo2",
+      },
+      timeFrame: 0,
+    },
+    {
+      id: 410,
+      amount: 0,
+      crop: {
+        id: 3,
+        name: "repolho",
+        price: 1.5,
+        cost: 1.0,
+        space: 0.3,
+        time: 1.0,
+        profit: 0.5,
+      },
+      price: 1.5,
+      space: 0.3,
+      time: 1.0,
+      cost: 1.0,
+      field: {
+        id: 34,
+        size: 10.0,
+        name: "Campo3",
+      },
+      timeFrame: 0,
+    },
+    {
+      id: 411,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 32,
+        size: 10.0,
+        name: "Campo1",
+      },
+      timeFrame: 1,
+    },
+    {
+      id: 412,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 33,
+        size: 10.0,
+        name: "Campo2",
+      },
+      timeFrame: 1,
+    },
+    {
+      id: 413,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 34,
+        size: 10.0,
+        name: "Campo3",
+      },
+      timeFrame: 1,
+    },
+    {
+      id: 414,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 32,
+        size: 10.0,
+        name: "Campo1",
+      },
+      timeFrame: 2,
+    },
+    {
+      id: 415,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 33,
+        size: 10.0,
+        name: "Campo2",
+      },
+      timeFrame: 2,
+    },
+    {
+      id: 416,
+      amount: 0,
+      crop: {
+        id: 2,
+        name: "couve",
+        price: 10.0,
+        cost: 5.0,
+        space: 0.2,
+        time: 2.0,
+        profit: 5.0,
+      },
+      price: 10.0,
+      space: 0.2,
+      time: 2.0,
+      cost: 5.0,
+      field: {
+        id: 34,
+        size: 10.0,
+        name: "Campo3",
+      },
+      timeFrame: 2,
+    },
+  ],
+  inputData: {
+    id: 61,
+    budget: 20000.0,
+    space: 500.0,
+    timeFrames: 3,
+  },
+  fields: [
+    {
+      id: 32,
+      size: 10.0,
+      name: "Campo1",
+    },
+    {
+      id: 33,
+      size: 10.0,
+      name: "Campo2",
+    },
+    {
+      id: 34,
+      size: 10.0,
+      name: "Campo3",
+    },
+  ],
+};
+*/
 const Result: NextPage = () => {
   const [solution, setSolution] = useState<solutionProps>({} as solutionProps);
   const router = useRouter();
@@ -40,6 +277,8 @@ const Result: NextPage = () => {
       console.log(`${timeFrame}x${fieldIndex}`);
       console.log(i);
     }
+
+    //matrix[1][2] = null;
 
     return matrix;
   }
@@ -75,7 +314,6 @@ const Result: NextPage = () => {
           <h2>Solução {solution?.id}</h2>
           <div className={styles.wrapperRow}>
             <Card
-              color="#009"
               title="budget"
               text={solution?.inputData.budget?.toFixed(2).toString()}
               onClick={() => {}}

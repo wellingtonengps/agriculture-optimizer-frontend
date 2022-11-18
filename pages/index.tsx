@@ -9,23 +9,16 @@ import {
   Modal,
   ModalPlant,
 } from "../components";
+import styles from "../styles/Home.module.css";
 
 import { BsCurrencyDollar, BsFillCalendarRangeFill } from "react-icons/bs";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { useState, useEffect } from "react";
-import { fetchCrops, postUserInput } from "./api/api";
+import { fetchCrops, fetchSolutions, postUserInput } from "./api/api";
 import { inputDataProps, fieldProps, cropProps } from "../types/types";
 
 import { useRouter } from "next/router";
 import { AiOutlinePlus } from "react-icons/ai";
-import {
-  ButtonCrop,
-  ButtonField,
-  Container,
-  Section,
-  WrapperColumn,
-  WrapperRow,
-} from "../styles/homestyles";
 
 type dataProps = {
   investiment: number | null;
@@ -219,14 +212,14 @@ const Home: NextPage = () => {
         />
       )}
 
-      <Container>
-        <Section>
+      <div className={styles.body}>
+        <div className={styles.optionSection}>
           <h1>Agriculture-Optimizer</h1>
           <span>
             Helping you to make the right decision and seed your plants
           </span>
 
-          <WrapperRow>
+          <div className={styles.wrapperRow}>
             <Card
               title="Nome do modelo"
               text={data.modelName}
@@ -248,12 +241,12 @@ const Home: NextPage = () => {
               icon={BsFillCalendarRangeFill}
               color="#d1eedb"
             />
-          </WrapperRow>
-        </Section>
-        <Section>
+          </div>
+        </div>
+        <div className={styles.areaSection}>
           <h2>Manage your fields</h2>
           <span>Select an area for sowing</span>
-          <WrapperRow>
+          <div className={styles.wrapperRow}>
             {data.fields.map((data, index) => {
               return (
                 <CardField
@@ -265,25 +258,23 @@ const Home: NextPage = () => {
                 />
               );
             })}
-            <ButtonField onClick={onChangeModalField}>
-              <AiOutlinePlus size={25} style={{ margin: 0 }} />
-            </ButtonField>
-          </WrapperRow>
-        </Section>
-        <Section>
+            <button className={styles.buttonField} onClick={onChangeModalField}>
+              <AiOutlinePlus size={25} />
+            </button>
+          </div>
+        </div>
+        <div className={styles.plantSection}>
           <h2>Manage your plants</h2>
           <span>Select the crops you want to plant</span>
-          <WrapperColumn>
+          <div className={styles.wrapperColumn}>
             {data.plants.map((data) => {
               return <CardList key={data.id} type="full" data={data} />;
             })}
-            <ButtonCrop onClick={onChangeModalPlants}>
-              <AiOutlinePlus size={25} style={{ margin: 0 }} />
-            </ButtonCrop>
-          </WrapperColumn>
-        </Section>
+            <CardList type="empty" onChangeModal={onChangeModalPlants} />
+          </div>
+        </div>
         <Button title="Otimizar" onClick={handleOptimizeClick} />
-      </Container>
+      </div>
     </>
   );
 };

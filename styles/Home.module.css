@@ -1,0 +1,71 @@
+.body {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 64px;
+  margin-left: 115px;
+}
+
+.optionSection h1 {
+  margin-bottom: 5px;
+}
+
+.areaSection h2 {
+  margin-bottom: 5px;
+}
+
+.plantSection h2 {
+  margin-bottom: 5px;
+}
+
+.wrapperRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 35px;
+  margin-top: 30px;
+}
+
+.wrapperRow > * {
+  margin-right: 25px;
+}
+
+.wrapperColumn {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+  margin-top: 30px;
+}
+
+.wrapperColumn > * {
+  margin-bottom: 15px;
+}
+
+.buttonField {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1eedb;
+  border-radius: 40px;
+  height: 134px;
+  width: 190px;
+  color: #333;
+}
+
+.input {
+  width: 200px;
+  height: 35px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 10px;
+  margin-top: 5px;
+
+  padding-left: 10px;
+
+  color: #333333;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+}
