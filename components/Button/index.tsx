@@ -1,6 +1,7 @@
 import { IconType } from "react-icons";
 import styles from "./Button.module.css";
-import { Container } from "./styles";
+
+import { AiOutlinePlus } from "react-icons/ai";
 
 type ButtonProps = {
   title: String;
@@ -9,7 +10,11 @@ type ButtonProps = {
 };
 
 const Button = (props: ButtonProps) => {
-  return <Container onClick={props.onClick}>{props.title}</Container>;
+  return (
+    <button className={styles.button} onClick={props.onClick}>
+      {props.title}
+    </button>
+  );
 };
 
 export default Button;
