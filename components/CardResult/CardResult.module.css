@@ -1,0 +1,12 @@
+.wrapperGrid {
+  display: flex;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 100px;
+  margin-top: 40px;
+}
